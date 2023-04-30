@@ -37,6 +37,7 @@ const App = () => {
     setloading(true)
     setTotalCoins("")
     setinvestAmount("")
+    setPrice("")
   };
 
   useEffect(() => {
