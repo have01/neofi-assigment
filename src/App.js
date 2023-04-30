@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Header from './components/Header';
-import Form from "./components/Form";
+import React, { useEffect, useState, memo, lazy, Suspense } from 'react';
 import { Data } from './CryptoList/data';
-import Modal from './components/Modal';
+import Loader from './components/Loader';
+
+
+const Header = lazy(() => import('./components/Header'))
+const Form = lazy(() => import('./components/Form'))
+const Modal = lazy(() => import('./components/Modal'))
 
 const App = () => {
   const [price, setPrice] = useState('');
@@ -14,6 +17,9 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [coinName, setCoinName] = useState('btc');
   const [loading, setloading] = useState(true)
+
+  // Filtercoin 
+
   const handleFilterCoins = (value) => {
     if (value) {
       const filteredList = cryptoList.filter((coin) =>
@@ -25,12 +31,15 @@ const App = () => {
     }
   };
 
+  // On  invest amount the crypto value get
+
   const cryptoQuantity = (value) => {
     setinvestAmount(value)
     const total = value / price;
     setTotalCoins(total);
   };
 
+  // on open modal select coin to get detail 
   const handleCoin = (coins) => {
     setCoins(coins);
     setCoinName(coins?.symbol);
@@ -48,7 +57,6 @@ const App = () => {
       setPrice(convertToInr);
       setloading(false)
     };
-
     const handleSocketError = (error) => {
       console.error('WebSocket error:', error);
     };
@@ -71,28 +79,29 @@ const App = () => {
 
   return (
     <>
-
-      <Header />
-      <Form
-        coins={coins}
-        cryptoList={cryptoList}
-        price={price}
-        totalCoins={totalCoins}
-        cryptoQuantity={cryptoQuantity}
-        setShowModal={setShowModal}
-        loading={loading}
-        investAmount={investAmount}
-      />
-      <Modal
-        setShowModal={setShowModal}
-        showModal={showModal}
-        filterList={filterList}
-        cryptoList={cryptoList}
-        handleCoin={handleCoin}
-        handleFilterCoins={handleFilterCoins}
-      />
+      <Suspense fallback={<div className='container mx-auto '><Loader /></div>}>
+        <Header />
+        <Form
+          coins={coins}
+          cryptoList={cryptoList}
+          price={price}
+          totalCoins={totalCoins}
+          cryptoQuantity={cryptoQuantity}
+          setShowModal={setShowModal}
+          loading={loading}
+          investAmount={investAmount}
+        />
+        <Modal
+          setShowModal={setShowModal}
+          showModal={showModal}
+          filterList={filterList}
+          cryptoList={cryptoList}
+          handleCoin={handleCoin}
+          handleFilterCoins={handleFilterCoins}
+        />
+      </Suspense>
     </>
   );
 };
 
-export default App;
+export default memo(App);
