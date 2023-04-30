@@ -32,7 +32,7 @@ const Form = ({ coins, price, totalCoins, cryptoQuantity, setShowModal, cryptoLi
                     </div>
                 </div>
                 <div class="mt-[24px]">
-                    <label class="block text-white text-sm font-bold mb-2" for="password">Estimate Number of {coins?.name} You will Get</label>
+                    <label class="block text-white text-sm font-bold mb-2" for="password">Estimate Number of {coins?.name ? coins?.name : "Bitcoin"} You will Get</label>
                     <input class="text-white focus:outline-0 bg-bg-select mt-[12px] px-3 py-2 rounded-md text-sm  h-[60px] items-center w-full  sm:w-full"
                         type="password" id="password" name="password" placeholder={totalCoins ? totalCoins : "0.00"} disabled />
                 </div>
