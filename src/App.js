@@ -79,7 +79,7 @@ const App = () => {
 
   return (
     <>
-      <Suspense fallback={<div className='container mx-auto '><Loader /></div>}>
+      <Suspense fallback={<div className='container mx-auto flex items-center justify-center w-full h-[100vh] '><Loader /></div>}>
         <Header />
         <Form
           coins={coins}
