@@ -13,11 +13,11 @@ const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, ha
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mt-10 "
+                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none  bg-modal-bg bg-opacity-50"
                     >
                         <div className="relative w-auto my-6 mx-auto max-w-3xl ">
                             {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg w-[90vw] sm:w-[410px] h-[461px] relative flex flex-col  bg-modal-bg outline-none focus:outline-none mt-10 sm:mt-20 ">
+                            <div className="border-0 rounded-lg shadow-lg w-[90vw] sm:w-[410px] h-[461px] relative flex flex-col  bg-modal-bg outline-none focus:outline-none mt-10 sm:mt-40 ">
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 rounded-t">
                                     <button
