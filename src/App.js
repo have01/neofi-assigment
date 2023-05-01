@@ -23,7 +23,7 @@ const App = () => {
   const handleFilterCoins = (value) => {
     if (value) {
       const filteredList = cryptoList.filter((coin) =>
-        coin.name.toLowerCase().includes(value.toLowerCase())
+        coin.name.toLowerCase().includes(value.toLowerCase()) || coin.symbol.toLowerCase().includes(value.toLowerCase())
       );
       setFilterList(filteredList);
     } else {
