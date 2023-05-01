@@ -18,16 +18,16 @@ const Header = () => {
                     <div class="items-center bg-#0B0819 justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                         <ul class="flex flex-col bg-#0B0819 p-4 md:p-0 mt-4 font-medium  md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
                             <li className=" ">
-                                <p href="#" class="block py-2 pl-3 pr-4 text-active-link  " aria-current="page">Home</p>
+                                <p href="#" class="block py-2 pl-3 pr-4 text-active-link cursor-pointer " aria-current="page">Home</p>
                             </li>
                             <li>
-                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded  ">About</p>
+                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded cursor-pointer  ">About</p>
                             </li>
                             <li>
-                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded ">Services</p>
+                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded cursor-pointer  ">Services</p>
                             </li>
                             <li>
-                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded  ">Contact</p>
+                                <p href="#" class="block py-2 pl-3 pr-4 text-header-link rounded  cursor-pointer  ">Contact</p>
                             </li>
                         </ul>
                     </div>
