@@ -4,6 +4,7 @@ import Checkmark from "../assests/checkmark.png"
 
 
 const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, handleFilterCoins }) => {
+    console.log(filterList)
     const [selectedElement, setSelectedElement] = useState(null);
     const handleElementClick = (index) => {
         setSelectedElement(index);
@@ -45,7 +46,7 @@ const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, ha
                                     </form>
                                     <div className='overflow-y-scroll no-scrollbar w-[320px] h-[270px] overflow-x-hidden mt-2 px-2'>
                                         {
-                                            filterList.length > 1 ?
+                                            filterList.length > 0 ?
                                                 filterList.map((coins, index) => (
                                                     <div className='flex justify-between items-center w-full h-[44px] py-2 cursor-pointer'>
                                                         <div className='flex flex-row'>
