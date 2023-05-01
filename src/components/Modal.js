@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import React, { memo } from 'react'
 import Checkmark from "../assests/checkmark.png"
 
+const Modal = ({ setShowModal, showModal, filterList, cryptoList, setSelectedElement, selectedElement, handleCoin, handleFilterCoins }) => {
 
-
-const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, handleFilterCoins }) => {
-    console.log(filterList)
-    const [selectedElement, setSelectedElement] = useState(null);
     const handleElementClick = (index) => {
         setSelectedElement(index);
     };
+
     return (
         <>
             {showModal ? (
@@ -35,7 +33,7 @@ const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, ha
                                 </div>
                                 {/*body*/}
                                 <div className="relative p-6 flex flex-col items-center justify-center ">
-                                    <form class="flex items-center">
+                                    <div class="flex items-center">
                                         <label for="simple-search" class="sr-only">Search</label>
                                         <div class="relative  rounded-3xl border  border-input-b w-[320px] ">
                                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
@@ -43,15 +41,22 @@ const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, ha
                                             </div>
                                             <input type="text" id="simple-search" class="bg-transparent  text-white text-sm rounded-lg focus:outline-0 block w-full pl-10 p-2.5   dark:placeholder-white " placeholder="Search chains" required onChange={(e) => handleFilterCoins(e.target.value)} />
                                         </div>
-                                    </form>
+                                    </div>
                                     <div className='overflow-y-scroll no-scrollbar w-[320px] h-[270px] overflow-x-hidden mt-2 px-2'>
                                         {
                                             filterList.length > 0 ?
                                                 filterList.map((coins, index) => (
-                                                    <div className='flex justify-between items-center w-full h-[44px] py-2 cursor-pointer'>
-                                                        <div className='flex flex-row'>
-                                                            <img src={coins?.image} alt={coins?.symbol} srcset='' className='w-[24px] h-[24px]' />
-                                                            <p className='text-white px-3'>{coins?.name}</p>
+                                                    <div className={` ${selectedElement === index && 'bg-active-coin '} rounded-sm flex justify-between items-center w-full h-[44px] p-3 hover:bg-active-coin cursor-pointer`}
+                                                        key={index}
+                                                        onClick={() => {
+                                                            handleElementClick(index)
+                                                            handleCoin(coins)
+                                                        }}>
+                                                        <div className=' w-full flex flex-row justify-between items-center'>
+                                                            <div className='flex flex-row '>
+                                                                <img src={coins?.image} alt={coins?.symbol} srcset='' className='w-[24px] h-[24px] ' />
+                                                                <p className='text-white px-3'>{coins?.name}</p></div>
+                                                            <div>  {selectedElement === index && <span><img src={Checkmark} alt="checkmark" srcset="" /></span>}</div>
                                                         </div>
                                                         <p></p>
                                                     </div>
@@ -88,4 +93,4 @@ const Modal = ({ setShowModal, showModal, filterList, cryptoList, handleCoin, ha
     )
 }
 
-export default Modal
+export default memo(Modal)

@@ -17,17 +17,17 @@ const App = () => {
   const [showModal, setShowModal] = useState(false); //toggle modal 
   const [coinName, setCoinName] = useState('btc');
   const [loading, setloading] = useState(true)
-
+  const [selectedElement, setSelectedElement] = useState(null);
   // Filtercoin 
 
   const handleFilterCoins = (value) => {
     if (value) {
-      const filteredList = cryptoList.filter((coin) =>
-        coin.name.toLowerCase().includes(value.toLowerCase()) || coin.symbol.toLowerCase().includes(value.toLowerCase())
-      );
+      const filteredList = cryptoList.filter((coin) => coin.name.toLowerCase().includes(value.toLowerCase()) || coin.symbol.toLowerCase().includes(value.toLowerCase()));
       setFilterList(filteredList);
+
     } else {
       setFilterList([]);
+      setSelectedElement(null)
     }
   };
 
@@ -82,7 +82,6 @@ const App = () => {
     <>
       <Suspense fallback={<div className='container mx-auto flex items-center justify-center w-full h-[100vh] '><Loader /></div>}>
         <Header />
-
         <Form
           coins={coins}
           cryptoList={cryptoList}
@@ -93,10 +92,9 @@ const App = () => {
           loading={loading}
           investAmount={investAmount}
         />
-        <div class="w-20 h-20 bg-black rounded-full flex items-center justify-center">
-
-        </div>
         <Modal
+          selectedElement={selectedElement}
+          setSelectedElement={setSelectedElement}
           setShowModal={setShowModal}
           showModal={showModal}
           filterList={filterList}
