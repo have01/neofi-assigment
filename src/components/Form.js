@@ -9,7 +9,7 @@ const Form = ({ coins, price, totalCoins, cryptoQuantity, setShowModal, cryptoLi
     return (
         <div className='container mx-auto flex justify-center items-center h-[90vh] sm:mt-20 overflow-hidden'>
             <div class="w-[90vw] sm:w-[470px]  bg-form-bg sm:h-[567px] bg-div-bg mx-auto border-t border-input-b  mt-20 sm:mt-1 p-8 rounded-2xl shadow-md relative">
-                <div className=' -top-[20px] bg-bg-select p-3  border-black border-4 rounded-full items-center text-center absolute left-1/2 transform -translate-x-1/2'>
+                <div className=' -top-[32px] bg-bg-select p-[8px]  border-black border-4 rounded-full items-center text-center absolute left-1/2 transform -translate-x-1/2'>
                     <img src={coins?.image ? coins?.image : cryptoList[0].image} alt="" srcset="" className='w-[44px] h-[44px] rounded-full ' /></div>
                 <img src="" alt="" srcset="" />
                 <div class="mb-4 ">
