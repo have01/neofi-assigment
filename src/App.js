@@ -12,9 +12,9 @@ const App = () => {
   const [totalCoins, setTotalCoins] = useState('');
   const [coins, setCoins] = useState('eth');
   const [investAmount, setinvestAmount] = useState("")
-  const [cryptoList, setCryptoList] = useState(Data);
-  const [filterList, setFilterList] = useState([]);
-  const [showModal, setShowModal] = useState(false);
+  const [cryptoList, setCryptoList] = useState(Data); //crypto list on click to select coins
+  const [filterList, setFilterList] = useState([]); //serach result from user input 
+  const [showModal, setShowModal] = useState(false); //toggle modal 
   const [coinName, setCoinName] = useState('btc');
   const [loading, setloading] = useState(true)
 
@@ -50,11 +50,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    // Binance socket connection to fetch live price of coin
     const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${coinName}usdt@aggTrade`);
     const handleSocketMessage = (event) => {
       const response = JSON.parse(event.data);
-      const convertToInr = Math.floor(response.p) * 80;
-      setPrice(convertToInr);
+      const convertToInr = response.p * 80;
+      setPrice(convertToInr.toFixed(2));
       setloading(false)
     };
     const handleSocketError = (error) => {
