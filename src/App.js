@@ -52,13 +52,13 @@ const App = () => {
   useEffect(() => {
     // Binance socket connection to fetch live price of coin
     const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${coinName}usdt@aggTrade`);
-    const handleSocketMessage = (event) => {
-      const response = JSON.parse(event.data);
-      const convertToInr = response.p * 80;
+    const handleSocketMessage = async (event) => {
+      const response = await JSON.parse(event.data);
+      const convertToInr = await response.p * 80;
       setPrice(convertToInr.toFixed(2));
       setloading(false)
     };
-    const handleSocketError = (error) => {
+    const handleSocketError = async (error) => {
       console.error('WebSocket error:', error);
     };
 
@@ -82,6 +82,7 @@ const App = () => {
     <>
       <Suspense fallback={<div className='container mx-auto flex items-center justify-center w-full h-[100vh] '><Loader /></div>}>
         <Header />
+
         <Form
           coins={coins}
           cryptoList={cryptoList}
@@ -92,6 +93,9 @@ const App = () => {
           loading={loading}
           investAmount={investAmount}
         />
+        <div class="w-20 h-20 bg-black rounded-full flex items-center justify-center">
+
+        </div>
         <Modal
           setShowModal={setShowModal}
           showModal={showModal}
